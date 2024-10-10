@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>1.刮刮乐（橡皮擦）效果的核心api | 河豚</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    
+    <meta name="description" content="XXX">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.fcd904e3.css" as="style"><link rel="preload" href="/blog/assets/js/app.f0df7f2e.js" as="script"><link rel="preload" href="/blog/assets/js/2.0c4bddf9.js" as="script"><link rel="preload" href="/blog/assets/js/1.50b457b8.js" as="script"><link rel="preload" href="/blog/assets/js/40.746bbcd9.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.325b9f09.js"><link rel="prefetch" href="/blog/assets/js/11.845e3692.js"><link rel="prefetch" href="/blog/assets/js/12.ecdb524b.js"><link rel="prefetch" href="/blog/assets/js/13.3f3f6a36.js"><link rel="prefetch" href="/blog/assets/js/14.eb7a3d07.js"><link rel="prefetch" href="/blog/assets/js/15.b60f3925.js"><link rel="prefetch" href="/blog/assets/js/16.85253907.js"><link rel="prefetch" href="/blog/assets/js/17.c2838453.js"><link rel="prefetch" href="/blog/assets/js/18.3256f17f.js"><link rel="prefetch" href="/blog/assets/js/19.d8afd0ae.js"><link rel="prefetch" href="/blog/assets/js/20.10e47ab9.js"><link rel="prefetch" href="/blog/assets/js/21.33b300c9.js"><link rel="prefetch" href="/blog/assets/js/22.2dbf0660.js"><link rel="prefetch" href="/blog/assets/js/23.0b19fb5d.js"><link rel="prefetch" href="/blog/assets/js/24.3826b0a6.js"><link rel="prefetch" href="/blog/assets/js/25.fa38cc5a.js"><link rel="prefetch" href="/blog/assets/js/26.d8946148.js"><link rel="prefetch" href="/blog/assets/js/27.cb829d15.js"><link rel="prefetch" href="/blog/assets/js/28.ed8bb5c5.js"><link rel="prefetch" href="/blog/assets/js/29.d8e41b50.js"><link rel="prefetch" href="/blog/assets/js/3.af33e5d6.js"><link rel="prefetch" href="/blog/assets/js/30.e01a3364.js"><link rel="prefetch" href="/blog/assets/js/31.7c6536dc.js"><link rel="prefetch" href="/blog/assets/js/32.f525454e.js"><link rel="prefetch" href="/blog/assets/js/33.5e2146b5.js"><link rel="prefetch" href="/blog/assets/js/34.cbc96651.js"><link rel="prefetch" href="/blog/assets/js/35.442b37c6.js"><link rel="prefetch" href="/blog/assets/js/36.d0f6e7e5.js"><link rel="prefetch" href="/blog/assets/js/37.c738e4ad.js"><link rel="prefetch" href="/blog/assets/js/38.d610966a.js"><link rel="prefetch" href="/blog/assets/js/39.b75541dc.js"><link rel="prefetch" href="/blog/assets/js/4.45665f8a.js"><link rel="prefetch" href="/blog/assets/js/41.bbff594c.js"><link rel="prefetch" href="/blog/assets/js/42.5c88a79e.js"><link rel="prefetch" href="/blog/assets/js/43.25c2e885.js"><link rel="prefetch" href="/blog/assets/js/44.01594bf5.js"><link rel="prefetch" href="/blog/assets/js/45.c92c0e59.js"><link rel="prefetch" href="/blog/assets/js/46.80f0728c.js"><link rel="prefetch" href="/blog/assets/js/47.81e82aa9.js"><link rel="prefetch" href="/blog/assets/js/48.15b88b85.js"><link rel="prefetch" href="/blog/assets/js/49.f4700a1b.js"><link rel="prefetch" href="/blog/assets/js/5.7098d77a.js"><link rel="prefetch" href="/blog/assets/js/6.0c0a0f39.js"><link rel="prefetch" href="/blog/assets/js/7.6a854e57.js"><link rel="prefetch" href="/blog/assets/js/vendors~docsearch.77260563.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.fcd904e3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">河豚</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="https://github.com/chendx97" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="https://github.com/chendx97" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><a href="/blog/html/零宽字符" class="sidebar-heading clickable open"><span>html</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/html/零宽字符.html" class="sidebar-link">一个看起来只有2个字长度却有8的字符串引起的bug</a></li><li><a href="/blog/html/canvas-measureText.html" class="sidebar-link">canvas之measureText测量文本</a></li><li><a href="/blog/html/画板.html" class="sidebar-link">用canvas实现一个简单的画板</a></li><li><a href="/blog/html/刮刮乐.html" class="active sidebar-link">刮刮乐效果原来如此简单</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/html/刮刮乐.html#_1-刮刮乐-橡皮擦-效果的核心api" class="sidebar-link">1.刮刮乐（橡皮擦）效果的核心api</a></li><li class="sidebar-sub-header"><a href="/blog/html/刮刮乐.html#_2-基础版刮刮乐功能" class="sidebar-link">2.基础版刮刮乐功能</a></li><li class="sidebar-sub-header"><a href="/blog/html/刮刮乐.html#_3-进阶版刮刮乐功能" class="sidebar-link">3.进阶版刮刮乐功能</a></li><li class="sidebar-sub-header"><a href="/blog/html/刮刮乐.html#完整代码" class="sidebar-link">完整代码</a></li></ul></li><li><a href="/blog/html/is-caps-lock.html" class="sidebar-link">🔑输入密码时判断是否开启大写锁定</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/css/tailwind-guide" class="sidebar-heading clickable"><span>css</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/css/tailwind-guide.html" class="sidebar-link">tailwind使用指南</a></li><li><a href="/blog/css/timer.html" class="sidebar-link">【翻译】如何实现一个纯CSS计时器</a></li><li><a href="/blog/css/svg-cursor.html" class="sidebar-link">给svg设置cursor不生效</a></li><li><a href="/blog/css/menu.html" class="sidebar-link">常见的hover菜单缝隙问题</a></li><li><a href="/blog/css/element-plus自动按需引入.html" class="sidebar-link">实现自动引入+按需引入element-plus原来如此简单</a></li><li><a href="/blog/css/css-var-func.html" class="sidebar-link">🎐CSS变量和CSS函数</a></li><li><a href="/blog/css/text-ellipsis.html" class="sidebar-link">🧐文本溢出+完整内容提示</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/node/post-502" class="sidebar-heading clickable"><span>node</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/node/post-502.html" class="sidebar-link">为什么只这一个接口502呢？</a></li><li><a href="/blog/node/开发接口.html" class="sidebar-link">第一次开发node接口-干货总结</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/deploy/nginx-autoindex-auth" class="sidebar-heading clickable"><span>deploy</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/deploy/nginx-autoindex-auth.html" class="sidebar-link">目录浏览&amp;权限校验</a></li><li><a href="/blog/deploy/docker-tutorial.html" class="sidebar-link">Docker基础知识总结</a></li><li><a href="/blog/deploy/use-cicd-auto-deploy.html" class="sidebar-link">如何使用CICD实现自动化部署</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/custom-utils/frame" class="sidebar-heading clickable"><span>自定义开发工具</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/custom-utils/frame.html" class="sidebar-link">实现自定义脚手架</a></li><li><a href="/blog/custom-utils/npm.html" class="sidebar-link">从0到1实现一个npm库</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/git/lfs" class="sidebar-heading clickable"><span>git</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/git/lfs.html" class="sidebar-link">git LFS解决大文件上传</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/source-code/fetch-event-source" class="sidebar-heading clickable"><span>源码</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/source-code/fetch-event-source.html" class="sidebar-link">我的第一篇源码阅读之fetch-event-source</a></li><li><a href="/blog/source-code/virtual-node.html" class="sidebar-link">【翻译】200行JS实现的虚拟DOM</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/request/SSE" class="sidebar-heading clickable"><span>接口请求</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/request/SSE.html" class="sidebar-link">服务端主动推送消息Server-client events(SSE)</a></li><li><a href="/blog/request/如何判断接口是否在设定时间内返回.html" class="sidebar-link">如何判断接口是否在设定时间内返回</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/npm/could-not-determine-executable-to-run" class="sidebar-heading clickable"><span>npm</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/npm/npm error--could not determine executable to run.html" class="sidebar-link">could not determine executable to run</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/" class="sidebar-heading clickable router-link-active"><span>欢迎学习</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/" aria-current="page" class="sidebar-link">博客简介</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/blog/handbook/1" class="sidebar-heading clickable"><span>基础篇</span> <span class="arrow right"></span></a> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="_1-刮刮乐-橡皮擦-效果的核心api"><a href="#_1-刮刮乐-橡皮擦-效果的核心api" class="header-anchor">#</a> 1.刮刮乐（橡皮擦）效果的核心api</h2> <div class="language- extra-class"><pre><code>ctx.globalCompositeOperation = type;
+</code></pre></div><p>设置要在绘制新形状时应用的合成操作的类型。
+我们这里需要用到的类型是 <code>destination-out</code> <img src="https://cdn.jsdelivr.net/gh/chendx97/CPics/img/e5c12874897c4199aabb4fd83d4bec25~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp" alt="1206102951-61b0b351184c4_fix732.webp"><br>
+此属性的详细信息：<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation" target="_blank" rel="noopener noreferrer">MDN文档<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="_2-基础版刮刮乐功能"><a href="#_2-基础版刮刮乐功能" class="header-anchor">#</a> 2.基础版刮刮乐功能</h2> <p>canvs 覆盖在图片上</p> <p><img src="https://cdn.jsdelivr.net/gh/chendx97/CPics/img/0c8a90facb104af6b99b2ca35dfd941e~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp" alt="1658915698-61b0b4e96c7e7.webp"></p> <div class="language- extra-class"><pre><code>&lt;style&gt;
+    body {
+      margin: 0;
+    }
+    img {
+      width: 400px;
+      height: 300px;
+      left: 200px;
+      position: absolute;
+      z-index: -1;
+    }
+    canvas {
+      margin-left: 200px;
+    }
+  &lt;/style&gt;
+  
+  &lt;img src=&quot;./test.jpg&quot; alt=&quot;pic&quot;/&gt;
+  &lt;canvas id=&quot;canvas&quot; width=&quot;400&quot; height=&quot;300&quot;&gt;&lt;/canvas&gt;
+</code></pre></div> <div class="language- extra-class"><pre><code>&lt;script&gt;
+   let canvas = document.querySelector('#canvas');
+   let context = canvas.getContext('2d');
+   // 绘制涂层
+   context.beginPath();
+   context.fillStyle = 'grey';
+   context.fillRect(0, 0, 400, 300);
+   // 监听鼠标移动事件
+   canvas.addEventListener('mousemove', (e) =&gt; {
+    // 当鼠标左键按下&amp;&amp;移动鼠标时，清除鼠标附近涂层
+    if (e.which === 1 &amp;&amp; e.button === 0) {
+      const x = e.clientX, y = e.clientY;
+      context.globalCompositeOperation = 'destination-out';
+      context.beginPath();
+      // 清除以鼠标位置为圆心，半径为10px的圆的范围
+      context.arc(x - 200, y, 10, 0, Math.PI * 2);
+      context.fill();
+    }
+   })
+  &lt;/script&gt;
+</code></pre></div><h2 id="_3-进阶版刮刮乐功能"><a href="#_3-进阶版刮刮乐功能" class="header-anchor">#</a> 3.进阶版刮刮乐功能</h2> <p>进阶功能：
+点击时，以当前位置为圆心刮开一部分区域；
+刮开x百分比（可以自定义）后后显示全部，并且使用动画逐渐变淡；
+调用第一次刮的回调方法和刮完的回调方法，可以传入或不传；
+涂层上面可以显示自定义文字；</p> <p><img src="https://cdn.jsdelivr.net/gh/chendx97/CPics/img/338e11a92b3741d18d5378f3f5481b76~tplv-k3u1fbpfcp-jj-mark:3024:0:0:0:q75.awebp" alt="14236041-61b0b553e0efc.webp"></p> <p>首先改为class形式，方便多次创建刮刮乐。</p> <div class="language- extra-class"><pre><code>class Scratch {
+      constructor(id, { maskColor = 'grey', cursorRadius = 10 } = {}) {
+        this.canvas = document.getElementById('canvas');
+        this.context = this.canvas.getContext('2d');
+        this.width = this.canvas.clientWidth;
+        this.height = this.canvas.clientHeight;
+        this.maskColor = maskColor; // 涂层颜色
+        this.cursorRadius = cursorRadius; // 光标半径
+        this.init();
+      }
+      init() {
+        // 添加涂层
+        this.addCoat();
+        let bindEarse = this.erase.bind(this);
+        this.canvas.addEventListener('mousedown', (e) =&gt; {
+          // 按下左键
+          if (e.which === 1 &amp;&amp; e.button === 0) {
+            // 擦掉涂层
+            this.canvas.addEventListener('mousemove', bindEarse);
+          }
+        })
+        document.addEventListener('mouseup', () =&gt; {
+          this.canvas.removeEventListener('mousemove', bindEarse);
+        })
+      }
+      addCoat() {
+        this.context.beginPath();
+        this.context.fillStyle = this.maskColor;
+        this.context.fillRect(0, 0, this.width, this.height);
+      }
+      erase(e) {
+        const x = e.clientX, y = e.clientY;
+        this.context.globalCompositeOperation = 'destination-out';
+        this.context.beginPath();
+        this.context.arc(x - this.width / 2, y, this.cursorRadius, 0, Math.PI * 2);
+        this.context.fill();
+      }
+    }
+    new Scratch('canvas');
+</code></pre></div><p>然后，记录鼠标位置，mouseup时判断是点击还是点击&amp;移动鼠标，如果是点击则以当前位置为圆心刮开一部分区域；</p> <div class="language- extra-class"><pre><code>this.canvas.addEventListener('mousedown', (e) =&gt; {
+      this.posX = e.clientX;
+      this.posY = e.clientY;
+      ...
+})
+ document.addEventListener('mouseup', (e) =&gt; {
+    if (this.posX === e.clientX &amp;&amp; this.posY === e.clientY) {
+      this.erase(e);
+    }
+     ...
+})
+</code></pre></div><p>然后，判断刮开面积是否超过一半，如果是清空涂层；</p> <div class="language- extra-class"><pre><code>ImageData ctx.getImageData(sx, sy, sw, sh);
+</code></pre></div><p>sx：将要被提取的图像数据矩形区域的左上角 x 坐标。
+sy：将要被提取的图像数据矩形区域的左上角 y 坐标。
+sw：将要被提取的图像数据矩形区域的宽度。
+sh：将要被提取的图像数据矩形区域的高度。</p> <p>ImageData 对象，包含canvas给定的矩形图像数据。可以用来判断是否被刮开。
+每4个元素表示一个像素点的rgba值，所以可以判断第4个的值是否小于256的一半即128，如果小于128即可视为透明（被刮开）。</p> <p>清空指定区域内容：</p> <div class="language- extra-class"><pre><code>void ctx.clearRect(x, y, width, height);
+</code></pre></div> <div class="language- extra-class"><pre><code>document.addEventListener('mouseup', (e) =&gt; {
+   this.getScratchedPercentage();
+    if (this.currPerct &gt;= this.maxEraseArea) {
+        this.context.clearRect(0, 0, this.width, this.height);
+    }
+})
+
+getScratchedPercentage() {
+    const pixels = this.context.getImageData(0, 0, this.width, this.height).data;
+    let transparentPixels = 0;
+    for (let i = 0; i &lt; pixels.length; i += 4) {
+         if (pixels[i + 3] &lt; 128) {
+            transparentPixels++;
+          }
+    }
+    this.currPerct = (transparentPixels / pixels.length * 4 * 100).toFixed(2);
+}
+</code></pre></div><p>然后，设置第一次刮的回调方法和刮完的回调方法；</p> <div class="language- extra-class"><pre><code>constructor(id, { maskColor = 'grey', cursorRadius = 10, maxEraseArea = 50,
+    firstEraseCbk = () =&gt; { }, lastEraseCbk = () =&gt; { } } = {}) {
+    ...
+    this.firstEraseCbk = firstEraseCbk; // 第一次刮的回调函数
+    this.lastEraseCbk = lastEraseCbk; // 刮开的回调函数
+}
+
+this.canvas.addEventListener('mousedown', (e) =&gt; { 
+    if (this.currPerct === 0) {
+        this.firstEraseCbk();
+    }
+})
+document.addEventListener('mouseup', (e) =&gt; {
+    if (this.currPerct &gt;= this.maxEraseArea) {
+        this.context.clearRect(0, 0, this.width, this.height);
+        this.lastEraseCbk();
+    }
+})
+</code></pre></div><p>然后，刮开全部时慢慢清空涂层，设置背景色渐变效果；
+<code>requestAnimationFrame</code> 做出来的动画更流畅
+回调函数用闭包形式可以给回调函数传参</p> <div class="language- extra-class"><pre><code>document.addEventListener('mouseup', (e) =&gt; {
+    if (this.currPerct &gt;= this.maxEraseArea) {
+        this.done = true;
+        requestAnimationFrame(this.fadeOut(255));
+         this.lastEraseCbk();
+    }
+})
+
+fadeOut(alpha) {
+    return () =&gt; {
+          this.context.save();
+          this.context.globalCompositeOperation = 'source-in';
+          this.context.fillStyle = this.context.fillStyle + (alpha -= 1).toString(16);
+          this.context.fillRect(0, 0, this.width, this.height);
+          this.context.restore();
+          // 到210已经看不到涂层了
+          if (alpha &gt; 210) {
+            requestAnimationFrame(this.fadeOut(alpha));
+          }
+     }
+}
+</code></pre></div><p>然后，初始化涂层的时候，再涂层上显示自定义文字；</p> <div class="language- extra-class"><pre><code>addCoat() {
+        ...
+        if (this.text) {
+          this.context.font = 'bold 48px serif';
+          this.context.fillStyle = '#fff';
+          this.context.textAlign = 'center';
+          this.context.textBaseline = 'middle';
+          this.context.fillText(this.text, this.width / 2, this.height / 2);
+        }
+}
+</code></pre></div><h2 id="完整代码"><a href="#完整代码" class="header-anchor">#</a> 完整代码</h2> <div class="language- extra-class"><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+  &lt;style&gt;
+    body {
+      margin: 0;
+    }
+
+
+    img {
+      width: 400px;
+      height: 300px;
+      left: 200px;
+      position: absolute;
+      z-index: -1;
+    }
+
+
+    canvas {
+      margin-left: 200px;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+
+&lt;body&gt;
+  &lt;img src=&quot;./test.jpg&quot; alt=&quot;pic&quot; /&gt;
+  &lt;canvas id=&quot;canvas&quot; width=&quot;400&quot; height=&quot;300&quot;&gt;&lt;/canvas&gt;
+  &lt;script&gt;
+    class Scratch {
+      constructor(id, { maskColor = 'grey', cursorRadius = 10, maxEraseArea = 50, text = '',
+        firstEraseCbk = () =&gt; { }, lastEraseCbk = () =&gt; { } } = {}) {
+        this.canvasId = id;
+        this.canvas = document.getElementById(id);
+        this.context = this.canvas.getContext('2d');
+        this.width = this.canvas.clientWidth;
+        this.height = this.canvas.clientHeight;
+        this.maskColor = maskColor; // 涂层颜色
+        this.cursorRadius = cursorRadius; // 光标半径
+        this.maxEraseArea = maxEraseArea; // 刮开多少后自动清空涂层
+        this.text = text;
+        this.firstEraseCbk = firstEraseCbk; // 第一次刮的回调函数
+        this.lastEraseCbk = lastEraseCbk; // 刮开的回调函数
+        this.currPerct = 0; // 当前刮开多少百分比
+        this.done = false; // 是否刮完
+        this.init();
+      }
+      init() {
+        // 添加涂层
+        this.addCoat();
+        let bindEarse = this.erase.bind(this);
+        this.canvas.addEventListener('mousedown', e =&gt; {
+          if (this.done) {
+            return;
+          }
+          this.posX = e.clientX;
+          this.posY = e.clientY;
+          // 按下左键
+          if (e.which === 1 &amp;&amp; e.button === 0) {
+            // 擦掉涂层
+            this.canvas.addEventListener('mousemove', bindEarse);
+          }
+          if (this.currPerct === 0) {
+            this.firstEraseCbk();
+          }
+        })
+        document.addEventListener('mouseup', e =&gt; {
+          if (this.done) {
+            return;
+          }
+          if (e.target.id !== this.canvasId) {
+            return;
+          }
+          if (this.posX === e.clientX &amp;&amp; this.posY === e.clientY) {
+            this.erase(e);
+          }
+          this.canvas.removeEventListener('mousemove', bindEarse);
+          this.getScratchedPercentage();
+          if (this.currPerct &gt;= this.maxEraseArea) {
+            this.done = true;
+            requestAnimationFrame(this.fadeOut(255));
+            this.lastEraseCbk();
+          }
+        })
+      }
+      // 添加涂层
+      addCoat() {
+        this.context.beginPath();
+        this.context.fillStyle = this.maskColor;
+        this.context.fillRect(0, 0, this.width, this.height);
+        // 绘制涂层上的文字
+        if (this.text) {
+          this.context.font = 'bold 48px serif';
+          this.context.fillStyle = '#fff';
+          this.context.textAlign = 'center';
+          this.context.textBaseline = 'middle';
+          this.context.fillText(this.text, this.width / 2, this.height / 2);
+        }
+      }
+      // 擦除某位置涂层
+      erase(e) {
+        const x = e.clientX, y = e.clientY;
+        this.context.globalCompositeOperation = 'destination-out';
+        this.context.beginPath();
+        this.context.arc(x - this.width / 2, y, this.cursorRadius, 0, Math.PI * 2);
+        this.context.fill();
+      }
+      // 计算被擦除的部分占全部的百分比
+      getScratchedPercentage() {
+        const pixels = this.context.getImageData(0, 0, this.width, this.height).data;
+        let transparentPixels = 0;
+        for (let i = 0; i &lt; pixels.length; i += 4) {
+          if (pixels[i + 3] &lt; 128) {
+            transparentPixels++;
+          }
+        }
+        this.currPerct = (transparentPixels / pixels.length * 4 * 100).toFixed(2);
+      }
+      // 清空涂层时淡出效果
+      fadeOut(alpha) {
+        return () =&gt; {
+          this.context.save();
+          this.context.globalCompositeOperation = 'source-in';
+          this.context.fillStyle = this.context.fillStyle + (alpha -= 1).toString(16);
+          this.context.fillRect(0, 0, this.width, this.height);
+          this.context.restore();
+          // 到210已经看不到涂层了
+          if (alpha &gt; 210) {
+            requestAnimationFrame(this.fadeOut(alpha));
+          }
+        }
+      }
+    }
+    new Scratch('canvas', { text: '刮一刮', maxEraseArea: 10 });
+  &lt;/script&gt;
+&lt;/body&gt;
+
+
+&lt;/html&gt;
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/blog/html/画板.html" class="prev">
+        用canvas实现一个简单的画板
+      </a></span> <span class="next"><a href="/blog/html/is-caps-lock.html">
+        🔑输入密码时判断是否开启大写锁定
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/blog/assets/js/app.f0df7f2e.js" defer></script><script src="/blog/assets/js/2.0c4bddf9.js" defer></script><script src="/blog/assets/js/1.50b457b8.js" defer></script><script src="/blog/assets/js/40.746bbcd9.js" defer></script>
+  </body>
+</html>
