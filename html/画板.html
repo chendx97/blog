@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>1.画板的功能 | 河豚</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    
+    <meta name="description" content="XXX">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.fcd904e3.css" as="style"><link rel="preload" href="/blog/assets/js/app.1893e9c8.js" as="script"><link rel="preload" href="/blog/assets/js/2.0c4bddf9.js" as="script"><link rel="preload" href="/blog/assets/js/1.50b457b8.js" as="script"><link rel="preload" href="/blog/assets/js/43.520eaa19.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.325b9f09.js"><link rel="prefetch" href="/blog/assets/js/11.845e3692.js"><link rel="prefetch" href="/blog/assets/js/12.ecdb524b.js"><link rel="prefetch" href="/blog/assets/js/13.3f3f6a36.js"><link rel="prefetch" href="/blog/assets/js/14.eb7a3d07.js"><link rel="prefetch" href="/blog/assets/js/15.b60f3925.js"><link rel="prefetch" href="/blog/assets/js/16.85253907.js"><link rel="prefetch" href="/blog/assets/js/17.c2838453.js"><link rel="prefetch" href="/blog/assets/js/18.3256f17f.js"><link rel="prefetch" href="/blog/assets/js/19.d8afd0ae.js"><link rel="prefetch" href="/blog/assets/js/20.10e47ab9.js"><link rel="prefetch" href="/blog/assets/js/21.33b300c9.js"><link rel="prefetch" href="/blog/assets/js/22.2dbf0660.js"><link rel="prefetch" href="/blog/assets/js/23.092c6a3b.js"><link rel="prefetch" href="/blog/assets/js/24.014ae58f.js"><link rel="prefetch" href="/blog/assets/js/25.b7708874.js"><link rel="prefetch" href="/blog/assets/js/26.d3e5d9d3.js"><link rel="prefetch" href="/blog/assets/js/27.5f1b9cc7.js"><link rel="prefetch" href="/blog/assets/js/28.736e693f.js"><link rel="prefetch" href="/blog/assets/js/29.556168b9.js"><link rel="prefetch" href="/blog/assets/js/3.af33e5d6.js"><link rel="prefetch" href="/blog/assets/js/30.621a11d2.js"><link rel="prefetch" href="/blog/assets/js/31.c79a8db4.js"><link rel="prefetch" href="/blog/assets/js/32.7c8cedc9.js"><link rel="prefetch" href="/blog/assets/js/33.5958a2b2.js"><link rel="prefetch" href="/blog/assets/js/34.4a54a44d.js"><link rel="prefetch" href="/blog/assets/js/35.597737ab.js"><link rel="prefetch" href="/blog/assets/js/36.d0887ecb.js"><link rel="prefetch" href="/blog/assets/js/37.2cbdf0b3.js"><link rel="prefetch" href="/blog/assets/js/38.064eaac7.js"><link rel="prefetch" href="/blog/assets/js/39.83d962f7.js"><link rel="prefetch" href="/blog/assets/js/4.45665f8a.js"><link rel="prefetch" href="/blog/assets/js/40.32b0788b.js"><link rel="prefetch" href="/blog/assets/js/41.3cce51b6.js"><link rel="prefetch" href="/blog/assets/js/42.6ea6e810.js"><link rel="prefetch" href="/blog/assets/js/44.b75de00b.js"><link rel="prefetch" href="/blog/assets/js/45.ce469189.js"><link rel="prefetch" href="/blog/assets/js/46.9298b11e.js"><link rel="prefetch" href="/blog/assets/js/47.7cacbd56.js"><link rel="prefetch" href="/blog/assets/js/48.70da414b.js"><link rel="prefetch" href="/blog/assets/js/49.d594964d.js"><link rel="prefetch" href="/blog/assets/js/5.7098d77a.js"><link rel="prefetch" href="/blog/assets/js/50.e55fc06a.js"><link rel="prefetch" href="/blog/assets/js/51.448d667d.js"><link rel="prefetch" href="/blog/assets/js/52.c65d6643.js"><link rel="prefetch" href="/blog/assets/js/53.38fc7ad2.js"><link rel="prefetch" href="/blog/assets/js/6.0c0a0f39.js"><link rel="prefetch" href="/blog/assets/js/7.6a854e57.js"><link rel="prefetch" href="/blog/assets/js/vendors~docsearch.77260563.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.fcd904e3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">河豚</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="https://github.com/chendx97" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="https://github.com/chendx97" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><a href="/blog/html/零宽字符" class="sidebar-heading clickable open"><span>html</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/html/零宽字符.html" class="sidebar-link">一个看起来只有2个字长度却有8的字符串引起的bug</a></li><li><a href="/blog/html/canvas-measureText.html" class="sidebar-link">canvas之measureText测量文本</a></li><li><a href="/blog/html/画板.html" class="active sidebar-link">用canvas实现一个简单的画板</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blog/html/画板.html#_1-画板的功能" class="sidebar-link">1.画板的功能</a></li><li class="sidebar-sub-header"><a href="/blog/html/画板.html#_2-所需知识" class="sidebar-link">2.所需知识</a></li><li class="sidebar-sub-header"><a href="/blog/html/画板.html#_3-一步步实现" class="sidebar-link">3.一步步实现</a></li></ul></li><li><a href="/blog/html/刮刮乐.html" class="sidebar-link">刮刮乐效果原来如此简单</a></li><li><a href="/blog/html/is-caps-lock.html" class="sidebar-link">🔑输入密码时判断是否开启大写锁定</a></li><li><a href="/blog/html/text-fragement.html" class="sidebar-link">文本片段：比Ctrl+F更智能</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/css/tailwind-guide" class="sidebar-heading clickable"><span>css</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/css/tailwind-guide.html" class="sidebar-link">tailwind使用指南</a></li><li><a href="/blog/css/timer.html" class="sidebar-link">【翻译】如何实现一个纯CSS计时器</a></li><li><a href="/blog/css/svg-cursor.html" class="sidebar-link">给svg设置cursor不生效</a></li><li><a href="/blog/css/menu.html" class="sidebar-link">常见的hover菜单缝隙问题</a></li><li><a href="/blog/css/element-plus自动按需引入.html" class="sidebar-link">实现自动引入+按需引入element-plus原来如此简单</a></li><li><a href="/blog/css/css-var-func.html" class="sidebar-link">🎐CSS变量和CSS函数</a></li><li><a href="/blog/css/text-ellipsis.html" class="sidebar-link">🧐文本溢出+完整内容提示</a></li><li><a href="/blog/css/reset-rule.html" class="sidebar-link">📃9条CSS重置样式规则</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/vue/watch" class="sidebar-heading clickable"><span>vue</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/vue/watch.html" class="sidebar-link">📢彻底了解Vu3的watchEffect和watch</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/node/post-502" class="sidebar-heading clickable"><span>node</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/node/post-502.html" class="sidebar-link">为什么只这一个接口502呢？</a></li><li><a href="/blog/node/开发接口.html" class="sidebar-link">第一次开发node接口-干货总结</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/deploy/nginx-autoindex-auth" class="sidebar-heading clickable"><span>deploy</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/deploy/nginx-autoindex-auth.html" class="sidebar-link">目录浏览&amp;权限校验</a></li><li><a href="/blog/deploy/docker-tutorial.html" class="sidebar-link">Docker基础知识总结</a></li><li><a href="/blog/deploy/use-cicd-auto-deploy.html" class="sidebar-link">如何使用CICD实现自动化部署</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/custom-utils/frame" class="sidebar-heading clickable"><span>自定义开发工具</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/custom-utils/frame.html" class="sidebar-link">实现自定义脚手架</a></li><li><a href="/blog/custom-utils/npm.html" class="sidebar-link">从0到1实现一个npm库</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/git/lfs" class="sidebar-heading clickable"><span>git</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/git/lfs.html" class="sidebar-link">git LFS解决大文件上传</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/source-code/fetch-event-source" class="sidebar-heading clickable"><span>源码</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/source-code/fetch-event-source.html" class="sidebar-link">我的第一篇源码阅读之fetch-event-source</a></li><li><a href="/blog/source-code/virtual-node.html" class="sidebar-link">【翻译】200行JS实现的虚拟DOM</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/request/SSE" class="sidebar-heading clickable"><span>接口请求</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/request/SSE.html" class="sidebar-link">服务端主动推送消息Server-client events(SSE)</a></li><li><a href="/blog/request/如何判断接口是否在设定时间内返回.html" class="sidebar-link">如何判断接口是否在设定时间内返回</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/npm/could-not-determine-executable-to-run" class="sidebar-heading clickable"><span>npm</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/npm/npm error--could not determine executable to run.html" class="sidebar-link">could not determine executable to run</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/other/vuepress2" class="sidebar-heading clickable"><span>other</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/other/vuepress2.html" class="sidebar-link">Vuepress2自定义主题详细指南</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/blog/" class="sidebar-heading clickable router-link-active"><span>欢迎学习</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/" aria-current="page" class="sidebar-link">博客简介</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/blog/handbook/1" class="sidebar-heading clickable"><span>基础篇</span> <span class="arrow right"></span></a> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="_1-画板的功能"><a href="#_1-画板的功能" class="header-anchor">#</a> 1.画板的功能</h2> <ul><li>修改画笔颜色；</li> <li>修改画笔粗细；</li> <li>橡皮擦；</li> <li>重置画板；</li> <li>撤销上一步；</li> <li>保存成图片；</li></ul> <h2 id="_2-所需知识"><a href="#_2-所需知识" class="header-anchor">#</a> 2.所需知识</h2> <p><code>Element.getBoundingClientRect()</code> 方法返回元素的大小及其相对于视口的位置。
+<code>ctx.moveTo(x, y)</code> 将一个新的子路径的起始点移动到(x，y)坐标
+<code>ctx.lineTo(x, y)</code> 使用直线连接子路径的终点到x，y坐标</p> <h2 id="_3-一步步实现"><a href="#_3-一步步实现" class="header-anchor">#</a> 3.一步步实现</h2> <h4 id="第一步-实现基本功能-可以画出来鼠标路径"><a href="#第一步-实现基本功能-可以画出来鼠标路径" class="header-anchor">#</a> 第一步，实现基本功能，可以画出来鼠标路径；</h4> <div class="language- extra-class"><pre class="language-text"><code>&lt;canvas id=&quot;myCanvas&quot; width=&quot;400&quot; height=&quot;400&quot;&gt;&lt;/canvas&gt;
+
+class Board {
+  constructor(id) {
+    this.canvas = document.getElementById(id);
+    this.context = this.canvas.getContext('2d');
+    this.isDrawing = false;
+    this.posX = 0;
+    this.posY = 0;
+    this.init();
+  }
+  init() {
+    const bindDown = this.handleMouseDown.bind(this);
+    const bindMove = this.handleMouseMove.bind(this);
+    this.canvas.addEventListener('mousedown', bindDown);
+    this.canvas.addEventListener('mousemove', bindMove);
+    window.addEventListener('mouseup', () =&gt; {
+      this.isDrawing = false;
+    });
+  }
+  handleMouseDown(e) {
+    const rect = this.canvas.getBoundingClientRect();
+    this.posX = e.clientX - rect.left;
+    this.posY = e.clientY - rect.top;
+    this.isDrawing = true;
+  }
+  handleMouseMove(e) {
+    if (this.isDrawing === true) {
+      const rect = this.canvas.getBoundingClientRect();
+      this.drawLine(this.context, this.posX, this.posY,
+		 e.clientX - rect.left, e.clientY - rect.top);
+      this.posX = e.clientX - rect.left;
+      this.posY = e.clientY - rect.top;
+    }
+  }
+  drawLine(context, x1, y1, x2, y2) {
+    context.beginPath();
+    context.strokeStyle = 'black';
+    context.lineWidth = 1;
+    context.moveTo(x1, y1);
+    context.lineTo(x2, y2);
+    context.stroke();
+    context.closePath();
+  }
+}
+new Board('myCanvas');
+</code></pre></div><h4 id="第二步-可以修改画笔颜色"><a href="#第二步-可以修改画笔颜色" class="header-anchor">#</a> 第二步，可以修改画笔颜色；</h4> <div class="language- extra-class"><pre class="language-text"><code>&lt;input id=&quot;colorPicker&quot; type=&quot;color&quot; /&gt;
+
+document.getElementById('colorPicker').addEventListener('change', e =&gt; {
+      b.changeColor(e.target.value);
+    })
+    
+    class Board {
+        constructor(id, color = '#000') {
+              this.penColor = color; 
+        }  
+        drawLine(context, x1, y1, x2, y2) {
+          context.strokeStyle = this.penColor;          
+        }
+        changeColor(color) {
+        this.penColor = color;
+      }              
+    }
+</code></pre></div><h4 id="第三步-修改画笔粗细"><a href="#第三步-修改画笔粗细" class="header-anchor">#</a> 第三步，修改画笔粗细；</h4> <div class="language- extra-class"><pre class="language-text"><code>ctx.lineWidth = number;
+</code></pre></div><h4 id="第四步-橡皮擦"><a href="#第四步-橡皮擦" class="header-anchor">#</a> 第四步，橡皮擦；</h4> <p><code>context.globalCompositeOperation = 'destination-out';</code>
+参照刮刮乐功能。</p> <h4 id="第五步-重置画板"><a href="#第五步-重置画板" class="header-anchor">#</a> 第五步，重置画板；</h4> <p><code>context.clearRect(0, 0, width, height);</code></p> <h4 id="第六步-撤销上一步"><a href="#第六步-撤销上一步" class="header-anchor">#</a> 第六步，撤销上一步；</h4> <p><code>this.canvas.toDataURL()</code>
+将当前canvas保存为base64的图片，存放在数组中。再设置一个索引，撤销/恢复修改索引的值，从数组中取出对应的图片。</p> <h4 id="第七步-保存为图片"><a href="#第七步-保存为图片" class="header-anchor">#</a> 第七步，保存为图片；</h4> <p>创建一个a标签，href为toDataURL()生成的图片，模拟点击事件，点击a链接。</p> <h3 id="_4-完整代码"><a href="#_4-完整代码" class="header-anchor">#</a> 4.完整代码</h3> <div class="language- extra-class"><pre class="language-text"><code>&lt;div class=&quot;opera&quot;&gt;
+    &lt;input id=&quot;colorPicker&quot; type=&quot;color&quot; /&gt;
+    &lt;select id=&quot;fontsizeSelect&quot;&gt;
+      &lt;option value=&quot;1&quot;&gt;1&lt;/option&gt;
+      &lt;option value=&quot;2&quot;&gt;2&lt;/option&gt;
+      &lt;option value=&quot;3&quot;&gt;3&lt;/option&gt;
+      &lt;option value=&quot;4&quot;&gt;4&lt;/option&gt;
+      &lt;option value=&quot;5&quot;&gt;5&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;button id=&quot;eraser&quot;&gt;橡皮擦&lt;/button&gt;
+    &lt;button id=&quot;reset&quot;&gt;重置&lt;/button&gt;
+    &lt;button id=&quot;revoke&quot;&gt;撤销&lt;/button&gt;
+    &lt;button id=&quot;recover&quot;&gt;恢复&lt;/button&gt;
+    &lt;button id=&quot;saveAsPic&quot;&gt;保存为图片&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;canvas id=&quot;myCanvas&quot; width=&quot;400&quot; height=&quot;400&quot;&gt;&lt;/canvas&gt;
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code> class Board {
+      constructor(id, color = '#000', fontsize = 1) {
+        this.canvas = document.getElementById(id);
+        this.context = this.canvas.getContext('2d');
+        this.isDrawing = false;
+        this.posX = 0;
+        this.posY = 0;
+        this.penColor = color;
+        this.fontsize = fontsize;
+        this.isErasing = false;
+        this.step = 0;
+        this.histroyList = [];
+        this.init();
+      }
+      init() {
+        const bindDown = this.handleMouseDown.bind(this);
+        const bindMove = this.handleMouseMove.bind(this);
+        this.canvas.addEventListener('mousedown', bindDown);
+        this.canvas.addEventListener('mousemove', bindMove);
+        window.addEventListener('mouseup', () =&gt; {
+          this.isDrawing = false;
+        });
+        this.canvas.addEventListener('mouseup', () =&gt; {
+          this.step++;
+          if (this.step &lt; this.histroyList.length) {
+            this.histroyList.length = this.step;
+          }
+          this.histroyList.push(this.canvas.toDataURL());
+        });
+        this.histroyList.push(this.canvas.toDataURL());
+      }
+      handleMouseDown(e) {
+        const rect = this.canvas.getBoundingClientRect();
+        this.posX = e.clientX - rect.left;
+        this.posY = e.clientY - rect.top;
+        this.isDrawing = true;
+      }
+      handleMouseMove(e) {
+        const rect = this.canvas.getBoundingClientRect();
+        if (this.isErasing) {
+          this.context.globalCompositeOperation = 'destination-out';
+          this.context.beginPath();
+          this.context.arc(e.clientX - rect.left, e.clientY - rect.top,
+			 10, 0, Math.PI * 2);
+          this.context.fill();
+        } else if (this.isDrawing === true) {
+          this.drawLine(this.context, this.posX, this.posY,
+		 e.clientX - rect.left, e.clientY - rect.top);
+          this.posX = e.clientX - rect.left;
+          this.posY = e.clientY - rect.top;
+        }
+      }
+      drawLine(context, x1, y1, x2, y2) {
+        context.beginPath();
+        context.strokeStyle = this.penColor;
+        context.lineWidth = this.fontsize;
+        context.moveTo(x1, y1);
+        context.lineTo(x2, y2);
+        context.stroke();
+        context.closePath();
+      }
+      changeColor(color) {
+        this.penColor = color;
+      }
+      changeFontSize(size) {
+        this.fontsize = size;
+      }
+      switchEraseStatus() {
+        this.isErasing = !this.isErasing;
+      }
+      clearBoard() {
+        this.context.clearRect(0, 0, window.myCanvas.width,
+	 window.myCanvas.height);
+        this.step = 0;
+        this.histroyList = [];
+      }
+      revoke() {
+        if (this.step &gt; 0) {
+          this.step--;
+          this.context.clearRect(0, 0, window.myCanvas.width, 
+		window.myCanvas.height);
+          let pic = new Image();
+          pic.src = this.histroyList[this.step];
+          pic.addEventListener('load', () =&gt; {
+            this.context.drawImage(pic, 0, 0);
+          })
+        } else {
+          console.log('不能继续撤销了')
+        }
+      }
+      recover() {
+        if (this.step &lt; this.histroyList.length - 1) {
+          this.step++;
+          this.context.clearRect(0, 0, window.myCanvas.width,
+       window.myCanvas.height);
+          let pic = new Image();
+          pic.src = this.histroyList[this.step];
+          pic.addEventListener('load', () =&gt; {
+            this.context.drawImage(pic, 0, 0);
+          })
+        } else {
+          console.log('不能继续恢复了')
+        }
+      }
+      saveAsPic() {
+        const el = document.createElement('a');
+        el.href = this.canvas.toDataURL();
+        el.download = 'canvas';
+        const event = new MouseEvent('click');
+        el.dispatchEvent(event);
+      }
+    }
+    const b = new Board('myCanvas');
+
+
+    window.colorPicker.addEventListener('change', e =&gt; {
+      b.changeColor(e.target.value);
+    })
+
+
+    window.fontsizeSelect.addEventListener('change', e =&gt; {
+      b.changeFontSize(window.fontsizeSelect.value);
+    })
+
+
+    window.eraser.addEventListener('click', () =&gt; {
+      b.switchEraseStatus();
+    })
+
+
+    window.reset.addEventListener('click', () =&gt; {
+      b.clearBoard();
+    })
+
+
+    window.revoke.addEventListener('click', () =&gt; {
+      b.revoke();
+    })
+
+
+    window.recover.addEventListener('click', () =&gt; {
+      b.recover();
+    })
+
+
+    window.saveAsPic.addEventListener('click', () =&gt; {
+      b.saveAsPic();
+    })
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/blog/html/canvas-measureText.html" class="prev">
+        canvas之measureText测量文本
+      </a></span> <span class="next"><a href="/blog/html/刮刮乐.html">
+        刮刮乐效果原来如此简单
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/blog/assets/js/app.1893e9c8.js" defer></script><script src="/blog/assets/js/2.0c4bddf9.js" defer></script><script src="/blog/assets/js/1.50b457b8.js" defer></script><script src="/blog/assets/js/43.520eaa19.js" defer></script>
+  </body>
+</html>
